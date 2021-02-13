@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from rest_framework.settings import APISettings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'usuarios.apps.UsuariosConfig'
+
+    #Third-Party Apps
+    'rest_framework',
+
+    #Local Apps
+    'usuarios.apps.UsuariosConfig',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +55,40 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#Firebase Settings para el autenticador personalizado
+USER_SETTINGS = None
+DEFAULTS = {
+    'FIREBASE_CREDENTIALS':{
+        "type": "service_account",
+        "project_id": "wallexcel1",
+        "private_key_id": "7c28d169c6f94c5bb2ae70249a565dabfeae005b",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCxGEfpkcN417YB\njxq6htHGHhT1ryPaTExQfUkeqgE8hFqVbg1CigrhbZWU6i/N6bVkgpoRtu5ifNaf\n0pyKJUSIgeb2x8LeCRbPfKKELoKFSimzZ0kmGNGeOMFpyLLp1DJ8VHc18QY7xV+P\nD9/1K9de/coS+j9EsQANV1zfkxVsynYyNEAuoe4vIzMOMHG2Kzg5sws3hF8jeHiQ\nU2zF3uravuaUAlvUDCy8eBPEgTZkpfgxO2a/wwP4m/jYb9UW5kCNvuszvTcx0q5D\nBobTHNn+fJyHO/V75/rPS9hzcc8g+gpS9wcr93ps6J4o4s/TAD2UkdUEvlNjzmrA\namhm9e99AgMBAAECggEAKBHa35XcGSERrOugvBiaKU4QJwDQR2nhEIswerAzpGo8\nBriGZopOaPA/GpkcZOZe5RWJ37041e7yLupcAgPprEtcI3VSeaOr1hmYufi+DoOX\nyOBzVBvkffzQgmtnU/Hv1GLWME3PP8HqW7fXUCVxzyv0R3P40cWMwfgE6w9gFyOc\n+bW/sqOpOJiQNJn564RY7n4gO4+n5zuhJy0ZQWmjLqbS+BH1QErFa0GqbSV1uJ52\ncvmNmzj/aFAXiNB78HSsZHvKmCZDVgcpnV07h6YLzSL9U6Iw0qs5FN2kzI8y526j\nWSk4rzWV6X3pdoohncxX5Sk9e+SoMGOVA9b6RSk0kQKBgQDz3UnFFOI44kO/tBpd\nEiZIWvd49dIfrPFyCm0pKQXVzg/WG6A/w1KBDSvSKaE0MLOJoHWH4kkus+TNzZ51\nqbQe2KIrncqQP6cadKA769E0JyiLiodY5u9Abf2TPSfcq/Ei2xmkkXwWtXaOnZue\nHLLAQx2VBRb3QCaA3ea8kZuCtQKBgQC56GGw1AfJvIpcCLEV5q4H2Azu0sAyp615\neHATWdBCN0hkl1bFLf7/2uw0Xd/dONIn07+wSmSdAhW8D9madBCiJjkjRPbzfWEB\n1GAl/ri0qL61AIvlJ162C5gu/V6LMtf7TKkI24LR0RXwxY9WhTIfZtMdC5bjeuLw\n6aLJrAPOqQKBgQCmoJGDZF2e2JvKJVnONlSKI/3sXKsSkaz4az9jXHBsQrx3Y7D/\nYIrDOyiyFVfcvVovs8Aa9PdkPe8c4F5hr28vlH5apxp9rcCURxQlXWA47ni5wBHz\nIPhhYcZeEO9nzOSbGHJRDEdpjNxRXkeypZFN5Y4VAMFMeDzW2MiMGEHV8QKBgEa+\nemZa2TfYimIpYJHv/Wu4uHstMbxU+HuP7D5A4DJCbUbyHC/ep/ne6iGnU2gQllBX\nkMtaE913jKPK+EiBQE8j8nxMYxkXLhIPKiNrQghlamTgd1vVVoI5+UhwXEjmKTBU\n5MIdHjQPt6Su2TPYbdFrRIz5+wpHmhKJJcxOrAg5AoGBAL1m5bolTX6nG/PhHoHS\nrP42BiRxp4mEJhbhLHIEUi2kx+K0Tp+MzX6ZUaBjOjXvym4HBRa+ga4EZ21l2lCB\nI+kWiVSho9OesP7sHwGFDNbbIlCvgdXPZb+d+pVcFtpcAq2SU9QZdvaXvHm47Vip\nFBLe1t075XtqBaHKG5/3AZuN\n-----END PRIVATE KEY-----\n",
+        "client_email": "firebase-adminsdk-4oa65@wallexcel1.iam.gserviceaccount.com",
+        "client_id": "109952215750975626327",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4oa65%40wallexcel1.iam.gserviceaccount.com"
+    },
+    'FIREBASE_CREATE_NEW_USER': True, # We'll make a new user if we get one that we don't have yet
+
+    'FIREBASE_AUTH_HEADER_PREFIX': "JWT",
+    'FIREBASE_UID_FIELD': 'username',
+    # Indicates if FB is set to allow one account per email (the default)
+    'FIREBASE_UNIQUE_EMAIL': True
+}
+IMPORT_STRINGS = (
+)
+
+FIREBASE_SETTINGS = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
+
+#Le decimos a REST Framework que vamos a usar nuestro autenticador personalizado
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'fireauth.fire_authentication.FirebaseAuthentication',
+    )
+}
 
 ROOT_URLCONF = 'wallexcel_back.urls'
 
